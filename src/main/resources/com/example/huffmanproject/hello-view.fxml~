@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextArea?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.huffmanproject.ApplicationUIController">
-<TextField fx:id="inputField" promptText="Enter text to encode" prefWidth="300" prefHeight="150"/>
+    <TextArea promptText="Enter text to encode" prefWidth="300" prefHeight="100" wrapText="true"/>
 <Button text="Encode" onAction="#onEncodeButtonClick"/>
 <TextArea fx:id="outputArea" editable="false" wrapText="true"/>
 <VBox fx:id="treeContainer"/>

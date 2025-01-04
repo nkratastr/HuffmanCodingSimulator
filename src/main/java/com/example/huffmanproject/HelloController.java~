@@ -1,4 +1,4 @@
-package com.example.huffmanproject;
+package com.example.huffmanproject.userinterface;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -8,7 +8,7 @@ import com.example.huffmanproject.service.HuffmanCodeService;
 
 import java.util.Map;
 
-public class ApplicationUIController {
+public class HelloController {
     @FXML
     private TextField inputField;
     @FXML
@@ -33,11 +33,6 @@ public class ApplicationUIController {
         output.append("Frequency Map:\n").append(frequencyMap).append("\n\n");
         output.append("Huffman Codes:\n").append(huffmanCodes).append("\n\n");
         output.append("Encoded Text:\n").append(encodedText);
-
-        // Calculate and append compression rate
-        String compressionRate = huffmanCodeService.getCompressionRate(input, encodedText);
-        output.append("\nCompression Rate: ").append(compressionRate);
-
 
         outputArea.setText(output.toString());
 

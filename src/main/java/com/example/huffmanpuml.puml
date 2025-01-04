@@ -1,0 +1,59 @@
+@startuml
+class com.example.huffmanproject.entity.HuffmanNode {
++ char character
++ int frequency
++ HuffmanNode left
++ HuffmanNode right
+}
+
+interface com.example.huffmanproject.interfaces.HuffmanCode {
+~ Map<Character,Integer> calculateFrequency(String)
+~ Map<Character,String> generateHuffmanCodes(Map<Character,Integer>)
+~ String encode(String,Map<Character,String>)
+~ String decode(String,Map<Character,String>)
+}
+
+class com.example.huffmanproject.service.HuffmanTreeService {
++ HuffmanNode buildTree(Map<Character,Integer>)
++ void drawHuffmanTree(HuffmanNode)
+- void drawNode(HuffmanNode,String,String)
++ void traverseTree(HuffmanNode,String,Map<Character,String>)
+}
+
+interface com.example.huffmanproject.interfaces.HuffmanTree {
+~ HuffmanNode buildTree(Map<Character,Integer>)
+~ void drawHuffmanTree(HuffmanNode)
+~ void traverseTree(HuffmanNode,String,Map<Character,String>)
+}
+
+class com.example.huffmanproject.service.HuffmanCodeService {
+- HuffmanTree huffmanTree
++ HuffmanTree getHuffmanTree()
++ Map<Character,Integer> calculateFrequency(String)
++ Map<Character,String> generateHuffmanCodes(Map<Character,Integer>)
++ String encode(String,Map<Character,String>)
++ String decode(String,Map<Character,String>)
+}
+
+
+class com.example.huffmanproject.ApplicationUI {
++ void start(Stage)
++ {static} void main(String[])
+}
+
+class com.example.huffmanproject.ApplicationUIController {
+- TextField inputField
+- TextArea outputArea
+- VBox treeContainer
+- HuffmanCodeService huffmanCodeService
++ void setHuffmanCodeService(HuffmanCodeService)
+# void onEncodeButtonClick()
+}
+
+
+
+
+com.example.huffmanproject.interfaces.HuffmanTree <|.. com.example.huffmanproject.service.HuffmanTreeService
+com.example.huffmanproject.interfaces.HuffmanCode <|.. com.example.huffmanproject.service.HuffmanCodeService
+javafx.application.Application <|-- com.example.huffmanproject.ApplicationUI
+@enduml

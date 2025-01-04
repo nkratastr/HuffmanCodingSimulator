@@ -1,7 +1,5 @@
 package com.example.huffmanproject.interfaces;
 
-import com.example.huffmanproject.entity.HuffmanNode;
-
 import java.util.Map;
 
 public interface HuffmanTree {

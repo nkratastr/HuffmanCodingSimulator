@@ -36,7 +36,7 @@ public class ApplicationUIController {
 
         // Calculate and append compression rate
         String compressionRate = huffmanCodeService.getCompressionRate(input, encodedText);
-        output.append("\nCompression Rate: ").append(compressionRate);
+        output.append("Compression Rate: ").append(compressionRate);
 
 
         outputArea.setText(output.toString());

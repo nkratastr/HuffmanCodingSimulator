@@ -9,10 +9,10 @@ import com.example.huffmanproject.service.HuffmanCodeService;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class ApplicationUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationUI.class.getResource("hello-view.fxml"));
 
         // Create instances of HuffmanTreeService and HuffmanCodeService
         HuffmanTreeService treeService = new HuffmanTreeService();
@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
 
         // Load the FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        HelloController controller = fxmlLoader.getController();
+        ApplicationUIController controller = fxmlLoader.getController();
 
         // Set the HuffmanCodeService in the controller
         controller.setHuffmanCodeService(codeService);
