@@ -25,6 +25,14 @@ public class ApplicationUIController {
     @FXML
     protected void onEncodeButtonClick() {
         String input = inputField.getText();
+
+        // Validation of inputtext
+        String validationError = validateInput(input);
+        if (validationError != null) {
+            outputArea.setText(validationError);
+            return;
+        }
+
         Map<Character, Integer> frequencyMap = huffmanCodeService.calculateFrequency(input);
         Map<Character, String> huffmanCodes = huffmanCodeService.generateHuffmanCodes(frequencyMap);
         String encodedText = huffmanCodeService.encode(input, huffmanCodes);
@@ -46,5 +54,34 @@ public class ApplicationUIController {
         output.append("\n\nHuffman Tree:\n");
         huffmanCodeService.getHuffmanTree().drawHuffmanTree(huffmanCodeService.getHuffmanTree().buildTree(frequencyMap));
         outputArea.setText(output.toString());
+    }
+
+    private String validateInput(String input) {
+        if (input.isEmpty()) {
+            return "Error: Input text cannot be empty.";
+        }
+
+        if (input.trim().isEmpty()) {
+            return "Error: Input text cannot contain only whitespace.";
+        }
+
+        if (input.length() < 5) {
+            return "Error: Input text must be at least 5 characters long.";
+        }
+
+        int MAX_INPUT_LENGTH = 10000;
+        if (input.length() > MAX_INPUT_LENGTH) {
+            return "Error: Input text is too long. Maximum allowed length is " + MAX_INPUT_LENGTH + " characters.";
+        }
+
+        if (input.chars().distinct().count() < 2) {
+            return "Error: Input must contain at least two distinct characters for Huffman coding.";
+        }
+
+        if (!input.matches("\\A\\p{ASCII}*\\z")) {
+            return "Error: Input contains non-ASCII characters. Please use only ASCII characters.";
+        }
+
+        return null; // Return null if input is valid
     }
 }
